@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+    font-size: 48px;
+    padding: 25px;
+}
+
+/* flexbox */
+.flex { 
+    display: flex;
+}
+
+.flex-jc-c {
+    justify-content: center;
+}
+
+.flex-ai-c {
+    align-items: center;
+}
+
+.flex-col {
+    flex-direction: column;
+}
