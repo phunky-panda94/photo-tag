@@ -21,6 +21,12 @@ h1 {
     padding: 25px;
 }
 
+.no-bullet {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
 /* flexbox */
 .flex { 
     display: flex;

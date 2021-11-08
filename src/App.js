@@ -1,15 +1,14 @@
 import './App.css';
+import List from './components/List';
 import { useState } from 'react';
 import coordinates from './Coordinates';
 
 function App() {
   
     const [inZone, setInZone] = useState(false);
-    const [position, setPosition] = useState({
-        top: 0,
-        left: 0
-    });
+    const [position, setPosition] = useState();
     const [clicked, setClicked] = useState(false);
+    const [score, setScore] = useState(0);
 
     function checkCoordinates(event) {
 
@@ -51,15 +50,18 @@ function App() {
             event.target.style.borderColor = '#a4d454';
             setClicked(true);
         }
-        
+
     }
 
     return (
         <div className="container flex flex-col flex-ai-c" >
             <h1>Guess Who?</h1>
+            <h2>Score: {score}</h2>
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
-                {inZone && <div className="outline" style={position} onClick={handleClick}></div>}
+                {inZone && <div className="outline" style={position} onClick={handleClick}>
+                    {clicked && <List />}
+                </div>}
             </div>
         </div>
     );
