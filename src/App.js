@@ -9,32 +9,49 @@ function App() {
         top: 0,
         left: 0
     });
+    const [clicked, setClicked] = useState(false);
 
     function checkCoordinates(event) {
 
-        let x = event.clientX - event.target.getBoundingClientRect().left;
-        let y = event.clientY - event.target.getBoundingClientRect().top;
-    
-        // check if (x,y) within range of stored coordinates
-        for (let coordinate of coordinates) {
+        if (!clicked) {
+        
+            let x = event.clientX - event.target.getBoundingClientRect().left;
+            let y = event.clientY - event.target.getBoundingClientRect().top;
+        
+            // check if (x,y) within range of stored coordinates
+            for (let coordinate of coordinates) {
 
-            if (x > coordinate[0] - 25 && x < coordinate[0] + 25 &&
-                y > coordinate[1] - 40 && y < coordinate[1] + 40) {
+                if (x > coordinate[0] - 25 && x < coordinate[0] + 25 &&
+                    y > coordinate[1] - 40 && y < coordinate[1] + 40) {
 
-                setInZone(true);
-                setPosition({
-                    left: coordinate[0] - 25,
-                    top: coordinate[1] - 40
-                });
+                    setInZone(true);
+                    setPosition({
+                        left: coordinate[0] - 25,
+                        top: coordinate[1] - 40
+                    });
 
-                break;
+                    break;
 
-            } 
+                } 
 
-            setInZone(false);
+                setInZone(false);
+
+            }
 
         }
 
+    }
+
+    function handleClick(event) {
+
+        if (clicked) {
+            event.target.style.borderColor = '#4c843c';
+            setClicked(false)
+        } else {
+            event.target.style.borderColor = '#a4d454';
+            setClicked(true);
+        }
+        
     }
 
     return (
@@ -42,7 +59,7 @@ function App() {
             <h1>Guess Who?</h1>
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
-                {inZone && <div className="outline" style={position}></div>}
+                {inZone && <div className="outline" style={position} onClick={handleClick}></div>}
             </div>
         </div>
     );
