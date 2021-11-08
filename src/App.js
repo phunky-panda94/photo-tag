@@ -9,6 +9,7 @@ function App() {
     const [position, setPosition] = useState();
     const [clicked, setClicked] = useState(false);
     const [score, setScore] = useState(0);
+    const [person, setPerson] = useState();
 
     function checkCoordinates(event) {
 
@@ -28,6 +29,7 @@ function App() {
                         left: coordinate[0] - 25,
                         top: coordinate[1] - 40
                     });
+                    setPerson(coordinate[2]);
 
                     break;
 
@@ -60,7 +62,7 @@ function App() {
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
                 {inZone && <div className="outline" style={position} onClick={handleClick}>
-                    {clicked && <List />}
+                    {clicked && <List person={person}/>}
                 </div>}
             </div>
         </div>

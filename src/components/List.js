@@ -1,9 +1,8 @@
-function List() {
+function List(props) {
     return  (
         <div className="list">
             <ul className="no-bullet">
-                <li>John Smith</li>
-                <li>Lily Hanson</li>
+                <li>{props.person}</li>
             </ul>
         </div>
     )
