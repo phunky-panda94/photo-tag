@@ -10,16 +10,10 @@ function App() {
         left: 0
     });
 
-    function getCoordinates(event) {
+    function checkCoordinates(event) {
 
-        let outlineY = event.clientY - event.target.getBoundingClientRect().top;
-        let outlineX = event.clientX - event.target.getBoundingClientRect().left;
-
-        checkCoordinates(outlineX, outlineY);
-
-    }
-
-    function checkCoordinates(x, y) {
+        let x = event.clientX - event.target.getBoundingClientRect().left;
+        let y = event.clientY - event.target.getBoundingClientRect().top;
     
         // check if (x,y) within range of stored coordinates
         for (let coordinate of coordinates) {
@@ -47,7 +41,7 @@ function App() {
         <div className="container flex flex-col flex-ai-c" >
             <h1>Guess Who?</h1>
             <div className="photo flex flex-col flex-jc-c">
-                <img alt="group" src="/group.jpg" onMouseMove={getCoordinates}></img>
+                <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
                 {inZone && <div className="outline" style={position}></div>}
             </div>
         </div>
