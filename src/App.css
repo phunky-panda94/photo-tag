@@ -4,26 +4,25 @@
 
 .list {
     text-align: center;
-    border-radius: 6px;
+    border-radius: 0 6px 6px 6px;
     padding: 5px 0;
     position: absolute;
     z-index: 2;
     left: 140%;
-    background-color: #3c3c3c;
+    background-color: #848484;
     color: #ffffff;
     width: 200px;
-    cursor: pointer;
 }
 
 .list::after {
     content: "";
     position: absolute;
-    top: 5%;
-    left: 0%;
-    margin-left: -20px;
+    top: 1%;
+    left: 2%;
+    margin-left: -23px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent #3c3c3c transparent transparent;
+    border-color: transparent #848484 transparent transparent;
     transform: scaleX(3);
 }
 

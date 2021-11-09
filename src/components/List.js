@@ -2,7 +2,9 @@ function List(props) {
     return  (
         <div className="list">
             <ul className="no-bullet">
-                <li>{props.person}</li>
+                {props.list.map(person => {
+                    return <li key={person}>{person}</li>
+                })}
             </ul>
         </div>
     )

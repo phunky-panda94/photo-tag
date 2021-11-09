@@ -1,8 +1,37 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { getRandomNamesList } from './App';
+import coordinates from './Coordinates';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe('getRandomNamesList function', () => {
+
+    test('returns list with person and 4 random names', () => {
+  
+        // Arrange
+        let person = coordinates[0][2]
+        
+        // Act
+        let list = getRandomNamesList(person);
+    
+        // Assert
+        expect(list.length).toBe(5);
+    
+    });
+
+    test('contains 5 unique names', () => {
+  
+        // Arrange
+        let person = coordinates[0][2]
+        
+        // Act
+        let list = getRandomNamesList(person);
+        let set = new Set(list)
+    
+        // Assert
+        expect(set.size).toBe(5);
+    
+    });
+
+}); 
+
+
+
+

@@ -62,7 +62,7 @@ function App() {
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
                 {inZone && <div className="outline" style={position} onClick={handleClick}>
-                    {clicked && <List person={person}/>}
+                    {clicked && <List list={getRandomNamesList(person)} person={person}/>}
                 </div>}
             </div>
         </div>
@@ -70,7 +70,33 @@ function App() {
 
 }
 
-// TODO: when clicked, show tooltip of name + random names
+export function getRandomNamesList(person) {
+
+    let namesList = [person];
+    let name;
+    let randomIndex;
+
+    // loop until 5 names in list
+    while (namesList.length < 5) {
+
+        // get random name from names
+        randomIndex = Math.floor(Math.random(0,1) * (coordinates.length - 1))
+        name = coordinates[randomIndex][2]
+
+        // skip if name already in list 
+        if (!namesList.includes(name)) {
+            namesList.push(name);
+        } else {
+            continue;
+        }
+
+    }
+
+    return namesList
+
+}
+
+// TODO: refactor to use Person object and store in backend
 
 // TODO: if selected name correct, return Win message
 
