@@ -44,7 +44,7 @@ function App() {
     }
 
     function handleClick(event) {
-
+        event.preventDefault();
         if (clicked) {
             event.target.style.borderColor = '#4c843c';
             setClicked(false)
@@ -55,6 +55,13 @@ function App() {
 
     }
 
+    function checkPerson(selectedPerson) {
+
+        selectedPerson === person ? window.alert('Correct!') : window.alert('Oops. Try again!');
+        setScore(score + 1);
+
+    }
+
     return (
         <div className="container flex flex-col flex-ai-c" >
             <h1>Guess Who?</h1>
@@ -62,7 +69,7 @@ function App() {
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
                 {inZone && <div className="outline" style={position} onClick={handleClick}>
-                    {clicked && <List list={getRandomNamesList(person)} person={person}/>}
+                    {clicked && <List list={getRandomNamesList(person)} checkPerson={checkPerson}/>}
                 </div>}
             </div>
         </div>
@@ -92,12 +99,28 @@ export function getRandomNamesList(person) {
 
     }
 
+    randomise(namesList);
+
     return namesList
+
+}
+
+export function randomise(list) {
+
+    let temp;
+    let randomIndex;
+
+    for (let i = 0; i < list.length; i++) {
+        temp = list[i];
+        randomIndex = Math.floor(Math.random(0,1) * (list.length - 1));
+        list[i] = list[randomIndex];
+        list[randomIndex] = temp;
+    }
 
 }
 
 // TODO: refactor to use Person object and store in backend
 
-// TODO: if selected name correct, return Win message
+// Kiri Campos, Romeo Finch
 
 export default App;

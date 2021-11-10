@@ -3,7 +3,7 @@ function List(props) {
         <div className="list">
             <ul className="no-bullet">
                 {props.list.map(person => {
-                    return <li key={person}>{person}</li>
+                    return <li key={person} onClick={() => props.checkPerson(person)}>{person}</li>
                 })}
             </ul>
         </div>

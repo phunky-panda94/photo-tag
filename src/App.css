@@ -17,7 +17,7 @@
 .list::after {
     content: "";
     position: absolute;
-    top: 1%;
+    top: 0%;
     left: 2%;
     margin-left: -23px;
     border-width: 5px;
