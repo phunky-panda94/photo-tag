@@ -1,7 +1,6 @@
 import './App.css';
 import List from './components/List';
-import { useState } from 'react';
-import coordinates from './Coordinates';
+import { useState, useEffect } from 'react';
 
 function App() {
   
@@ -10,6 +9,24 @@ function App() {
     const [clicked, setClicked] = useState(false);
     const [score, setScore] = useState(0);
     const [person, setPerson] = useState();
+    const [coordinates, setCoordinates] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+
+            console.log('fetching data...');
+            let data = 'http://localhost:8000/data'
+        
+            const response = await fetch(data, {mode: 'cors'})
+            const responseData = await response.json();
+
+            setCoordinates(responseData);
+            
+        }
+        
+        fetchData();
+
+    }, [])
 
     function checkCoordinates(event) {
 
@@ -21,15 +38,15 @@ function App() {
             // check if (x,y) within range of stored coordinates
             for (let coordinate of coordinates) {
 
-                if (x > coordinate[0] - 25 && x < coordinate[0] + 25 &&
-                    y > coordinate[1] - 40 && y < coordinate[1] + 40) {
+                if (x > coordinate.x - 25 && x < coordinate.x + 25 &&
+                    y > coordinate.y - 40 && y < coordinate.y + 40) {
 
                     setInZone(true);
                     setPosition({
-                        left: coordinate[0] - 25,
-                        top: coordinate[1] - 40
+                        left: coordinate.x - 25,
+                        top: coordinate.y - 40
                     });
-                    setPerson(coordinate[2]);
+                    setPerson(coordinate.person);
 
                     break;
 
@@ -44,7 +61,7 @@ function App() {
     }
 
     function handleClick(event) {
-        event.preventDefault();
+        
         if (clicked) {
             event.target.style.borderColor = '#4c843c';
             setClicked(false)
@@ -57,8 +74,12 @@ function App() {
 
     function checkPerson(selectedPerson) {
 
-        selectedPerson === person ? window.alert('Correct!') : window.alert('Oops. Try again!');
-        setScore(score + 1);
+        if (selectedPerson === person) {
+            window.alert('Correct!');
+            setScore(score + 1);
+        } else {
+            window.alert('Oops. Try again!');
+        }
 
     }
 
@@ -69,7 +90,7 @@ function App() {
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg" onMouseMove={checkCoordinates}></img>
                 {inZone && <div className="outline" style={position} onClick={handleClick}>
-                    {clicked && <List list={getRandomNamesList(person)} checkPerson={checkPerson}/>}
+                    {clicked && <List list={getRandomNamesList(person, coordinates)} checkPerson={checkPerson}/>}
                 </div>}
             </div>
         </div>
@@ -77,7 +98,7 @@ function App() {
 
 }
 
-export function getRandomNamesList(person) {
+export function getRandomNamesList(person, list) {
 
     let namesList = [person];
     let name;
@@ -87,8 +108,8 @@ export function getRandomNamesList(person) {
     while (namesList.length < 5) {
 
         // get random name from names
-        randomIndex = Math.floor(Math.random(0,1) * (coordinates.length - 1))
-        name = coordinates[randomIndex][2]
+        randomIndex = Math.floor(Math.random(0,1) * (list.length - 1))
+        name = list[randomIndex].person
 
         // skip if name already in list 
         if (!namesList.includes(name)) {
@@ -120,7 +141,5 @@ export function randomise(list) {
 }
 
 // TODO: refactor to use Person object and store in backend
-
-// Kiri Campos, Romeo Finch
 
 export default App;
