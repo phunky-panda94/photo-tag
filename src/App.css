@@ -40,10 +40,23 @@
 }
 
 .outline {
-    border: 4px solid #4c843c;
+    border: 4px solid #848484;
     cursor: pointer;
     height: 65px;
     width: 45px;
     position: absolute;
     z-index: 1;
+}
+
+.hidden {
+    border-color: transparent;
+}
+
+/* colors */
+.border-dark-green {
+    border-color: #4c843c;
+}
+
+.border-light-green {
+    border-color: #a4d454;
 }
