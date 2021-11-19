@@ -3,12 +3,7 @@ import List from './components/List';
 import Outline from './components/Outline';
 import { useState, useEffect } from 'react';
 
-// TODO: if person already correctly guessed, set outline to light green
-// 1̶.̶ ̶ ̶ ̶a̶d̶d̶ ̶o̶u̶t̶l̶i̶n̶e̶ ̶t̶o̶ ̶e̶v̶e̶r̶y̶ ̶p̶e̶r̶s̶o̶n̶
-// 2̶.̶ ̶ ̶ ̶i̶f̶ ̶i̶n̶ ̶z̶o̶n̶e̶ ̶a̶n̶d̶ ̶n̶o̶t̶ ̶a̶l̶r̶e̶a̶d̶y̶ ̶o̶u̶t̶l̶i̶n̶e̶d̶,̶ ̶d̶i̶s̶p̶l̶a̶y̶ ̶o̶u̶t̶l̶i̶n̶e̶
-// 2.1  when clicked, lock outline, change color to light green and display names list 
-// 2.2  if correctly guessed, set outline to stay on screen
-// 3.   if in zone and already outlined, display name 
+// TODO: if in zone and already outlined, display name on hover
 
 function App() {
   

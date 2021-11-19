@@ -7,11 +7,11 @@ function Outline(props) {
     const [clicked, setClicked] = useState(false);
     const [guessed, setGuessed] = useState(false);
 
-    function handleMouseOver() {
+    function handleMouseEnter() {
         setInZone(true)
     }
 
-    function handleMouseOut() {
+    function handleMouseLeave() {
         setInZone(false);
     }
 
@@ -31,8 +31,8 @@ function Outline(props) {
         <div 
             className={inZone || guessed ? 'outline' : 'outline hidden'} 
             style={position} 
-            onMouseOver={!clicked && handleMouseOver} 
-            onMouseOut={!clicked && handleMouseOut}
+            onMouseEnter={!clicked && handleMouseEnter} 
+            onMouseLeave={!clicked && handleMouseLeave}
             onClick={!guessed && handleClick}>
             {clicked && Children.map(props.children, child => {
                 return cloneElement(child, { setGuessed })
