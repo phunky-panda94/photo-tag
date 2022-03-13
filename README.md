@@ -13,6 +13,8 @@ Using React:
 - React.Children top-level API
 - mouse events
 
+Deployed using Netlify
+
 **Backend**
 
 Using Node.js, Express and MongoDB:
@@ -20,3 +22,5 @@ Using Node.js, Express and MongoDB:
 - HTTP request handlers
 - environment variables using the `dotenv` module
 - NoSQL
+
+Deployed using Heroku
