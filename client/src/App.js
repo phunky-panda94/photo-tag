@@ -13,8 +13,6 @@ function App() {
     useEffect(() => {
         const fetchData = async () => {
 
-            console.log('fetching data...');
-
             try {
                 let api = `${env.SERVER}/data`;
             
@@ -24,8 +22,6 @@ function App() {
                 setPeople(responseData);
                 setDataLoaded(true);
                 
-                console.log('data successfully retrieved');
-
             } catch(err) {
                 console.error('Unable to fetch data', err);
             }
@@ -37,9 +33,10 @@ function App() {
     }, [])
 
     return (
-        dataLoaded && <div className="container flex flex-col flex-ai-c">
-            <h1>Guess Who?</h1>
-            <h2>Score: {score}</h2>
+        dataLoaded && 
+        <div className="container flex flex-col flex-ai-c flex-jc-c">
+            <span className="large"><b>Guess Who?</b></span>
+            <span className="medium"><b>Score: {score}</b></span>
             <div className="photo flex flex-col flex-jc-c">
                 <img alt="group" src="/group.jpg"></img>
                 {people.map(person => {
