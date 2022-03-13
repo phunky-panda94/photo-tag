@@ -1,9 +1,8 @@
+import env from 'react-dotenv';
 import './App.css';
 import List from './components/List';
 import Outline from './components/Outline';
 import { useState, useEffect } from 'react';
-
-// TODO: if in zone and already outlined, display name on hover
 
 function App() {
   
@@ -17,9 +16,9 @@ function App() {
             console.log('fetching data...');
 
             try {
-                let api = 'http://localhost:8000/data'
+                let api = `${env.SERVER}/data`;
             
-                const response = await fetch(api, {mode: 'cors'})
+                const response = await fetch(api, { mode: 'cors' })
                 const responseData = await response.json();
                 
                 setPeople(responseData);
